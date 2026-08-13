@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주식 차트 패턴 학습실</title>
+<meta name="description" content="투자자산운용사 교재 기반 주식 차트 기술적 분석 · 패턴 학습 웹사이트">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <h1>📈 주식 차트 패턴 학습실</h1>
+    <p class="subtitle">기술적 분석의 기초부터 패턴 퀴즈까지 — 투자자산운용사 교재 기반</p>
+  </div>
+</header>
+
+<nav class="tabs" id="tabs">
+  <div class="wrap tab-row">
+    <button class="tab active" data-tab="intro">개요</button>
+    <button class="tab" data-tab="candle">캔들차트</button>
+    <button class="tab" data-tab="trend">추세·지지/저항</button>
+    <button class="tab" data-tab="ma">이동평균선</button>
+    <button class="tab" data-tab="reversal">반전형 패턴</button>
+    <button class="tab" data-tab="continuation">지속형 패턴</button>
+    <button class="tab" data-tab="gap">갭 이론</button>
+    <button class="tab" data-tab="indicator">보조지표</button>
+    <button class="tab tab-quiz" data-tab="quiz">🎯 패턴 퀴즈</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ 1. 개요 ============ -->
+<section class="panel active" id="panel-intro">
+  <h2>기술적 분석이란?</h2>
+  <p class="lead">
+    <strong>기술적 분석(Technical Analysis)</strong>은 주가·거래량 등 <b>과거 시장 데이터</b>를 도표(차트)화하여
+    시장의 움직임과 패턴을 찾아내고, 이를 바탕으로 <b>미래의 주가를 예측</b>하는 분석 방법입니다.
+    기업의 재무제표·경제 환경을 분석하는 <b>기본적 분석</b>과 대비됩니다.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>💡 기술적 분석의 3가지 기본 가정</h3>
+      <ol>
+        <li><b>시장의 움직임은 모든 정보를 반영한다.</b><br><span class="dim">수급에 영향을 주는 모든 요인이 이미 주가에 녹아 있다.</span></li>
+        <li><b>주가는 추세를 이루며 움직인다.</b><br><span class="dim">한번 형성된 추세는 상당 기간 지속되는 경향이 있다.</span></li>
+        <li><b>역사는 반복된다.</b><br><span class="dim">투자자의 심리가 비슷하게 반복되므로 과거의 패턴이 미래에도 나타난다.</span></li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>⚖️ 기본적 분석 vs 기술적 분석</h3>
+      <table class="mini-table">
+        <tr><th></th><th>기본적 분석</th><th>기술적 분석</th></tr>
+        <tr><td>분석 대상</td><td>기업 가치(재무·경제)</td><td>주가·거래량(차트)</td></tr>
+        <tr><td>목적</td><td>내재가치 대비 저평가 종목 발굴 (<b>무엇을</b> 살까)</td><td>매매 시점 포착 (<b>언제</b> 살까)</td></tr>
+        <tr><td>한계</td><td>시장가격과 내재가치의 괴리가 오래 지속될 수 있음</td><td>과거가 반복된다는 가정 자체가 비판받음, 해석이 주관적</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2>다우 이론 (Dow Theory)</h2>
+  <p>기술적 분석의 출발점이 된 이론으로, 주가의 움직임을 세 가지 추세로 구분합니다.</p>
+  <div class="card-grid">
+    <div class="card">
+      <h3>추세의 3구분</h3>
+      <ul>
+        <li><b>장기 추세(주추세)</b> — 1년 이상 지속되는 큰 흐름 (밀물·썰물)</li>
+        <li><b>중기 추세</b> — 3주~수개월, 주추세 속의 조정 (파도)</li>
+        <li><b>단기 추세</b> — 수일~3주 미만의 잔물결</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>강세시장 · 약세시장의 3국면</h3>
+      <table class="mini-table">
+        <tr><th>강세시장(상승장)</th><th>약세시장(하락장)</th></tr>
+        <tr><td>① 매집국면 <span class="dim">— 전문 투자자가 조용히 매수</span></td><td>① 분산국면 <span class="dim">— 전문 투자자가 서서히 매도</span></td></tr>
+        <tr><td>② 상승국면 <span class="dim">— 경기 호전, 주가 상승 본격화</span></td><td>② 공포국면 <span class="dim">— 매도 급증, 주가 급락</span></td></tr>
+        <tr><td>③ 과열국면 <span class="dim">— 일반 투자자까지 뛰어듦</span></td><td>③ 침체국면 <span class="dim">— 실망 매물, 거래 침체</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="demo" data-demo="dowPhases">
+    <div class="demo-head"><h4>강세시장 → 약세시장의 흐름</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box"><canvas></canvas></div>
+    <p class="demo-desc">전문 투자자는 침체된 ① 매집국면에서 사고, 과열된 ③ 국면에서 일반 투자자에게 넘깁니다. "무릎에 사서 어깨에 팔아라"라는 격언과 연결됩니다.</p>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>기술적 분석은 <b>매매 시점(timing)</b> 포착에 유리, 기본적 분석은 <b>종목 선정(selection)</b>에 유리</li>
+      <li>강세시장 국면 순서: <b>매집 → 상승(마크업) → 과열</b> / 약세시장: <b>분산 → 공포 → 침체</b></li>
+      <li>일반 투자자의 확신이 가장 강한 시점은 <b>과열국면</b> — 전문 투자자는 이때 오히려 매도</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2. 캔들차트 ============ -->
+<section class="panel" id="panel-candle">
+  <h2>캔들차트(봉차트)의 구조</h2>
+  <p class="lead">
+    하나의 캔들(봉)은 일정 기간의 <b>시가·고가·저가·종가</b> 네 가지 가격을 한눈에 보여줍니다.
+    종가가 시가보다 높으면 <span class="up-text">양봉(빨간색)</span>, 낮으면 <span class="dn-text">음봉(파란색)</span>입니다.
+  </p>
+
+  <div class="demo" data-demo="candleAnatomy">
+    <div class="demo-head"><h4>캔들의 구조 — 양봉과 음봉</h4></div>
+    <div class="canvas-box short"><canvas></canvas></div>
+    <p class="demo-desc">몸통(body)은 시가~종가 구간, 위아래 꼬리(그림자)는 고가·저가까지의 범위를 나타냅니다. 몸통이 길수록 매수(양봉)·매도(음봉)의 힘이 강했다는 뜻입니다.</p>
+  </div>
+
+  <h2>주요 단일 캔들 패턴</h2>
+  <div class="demo-grid">
+    <div class="demo half" data-demo="hammer">
+      <div class="demo-head"><h4>망치형 (Hammer)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc"><b>하락 추세 끝</b>에서 아래꼬리가 몸통의 2배 이상 긴 캔들. 장중 급락을 매수세가 되돌린 것으로 <b>상승 반전</b> 신호.</p>
+    </div>
+    <div class="demo half" data-demo="hangingMan">
+      <div class="demo-head"><h4>교수형 (Hanging Man)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">모양은 망치형과 같지만 <b>상승 추세 끝</b>에 나타나면 <b>하락 반전</b> 경고. 위치가 해석을 바꾸는 대표 사례.</p>
+    </div>
+    <div class="demo half" data-demo="shootingStar">
+      <div class="demo-head"><h4>유성형 (Shooting Star)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc"><b>상승 추세 끝</b>에서 위꼬리가 긴 캔들. 장중 상승분을 매도세가 눌러버린 것으로 <b>하락 반전</b> 신호.</p>
+    </div>
+    <div class="demo half" data-demo="doji">
+      <div class="demo-head"><h4>십자형 (Doji)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">시가 ≈ 종가로 몸통이 거의 없는 캔들. 매수·매도 세력의 <b>균형(관망)</b> 상태로, 추세 끝에서 나타나면 <b>전환 가능성</b>을 암시.</p>
+    </div>
+  </div>
+
+  <h2>복합 캔들 패턴 (2~3개 조합)</h2>
+  <div class="demo-grid">
+    <div class="demo half" data-demo="bullEngulf">
+      <div class="demo-head"><h4>상승장악형 (Bullish Engulfing)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">하락 추세에서 큰 양봉이 전날 음봉의 몸통을 <b>완전히 감싸는</b> 패턴. 강한 <b>상승 반전</b> 신호.</p>
+    </div>
+    <div class="demo half" data-demo="bearEngulf">
+      <div class="demo-head"><h4>하락장악형 (Bearish Engulfing)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">상승 추세에서 큰 음봉이 전날 양봉을 감싸는 패턴. 강한 <b>하락 반전</b> 신호.</p>
+    </div>
+    <div class="demo half" data-demo="morningStar">
+      <div class="demo-head"><h4>샛별형 (Morning Star)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">장대음봉 → 작은 몸통(별) → 장대양봉의 3봉 조합. 하락 추세 바닥에서 나타나는 <b>상승 반전</b> 패턴.</p>
+    </div>
+    <div class="demo half" data-demo="eveningStar">
+      <div class="demo-head"><h4>석별형 (Evening Star)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">장대양봉 → 작은 몸통 → 장대음봉. 상승 추세 꼭대기에서 나타나는 <b>하락 반전</b> 패턴.</p>
+    </div>
+    <div class="demo half" data-demo="threeWhite">
+      <div class="demo-head"><h4>적삼병 (Three White Soldiers)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">양봉 3개가 연속으로 고점을 높이는 패턴. 바닥권에서 나타나면 <b>본격 상승 개시</b> 신호.</p>
+    </div>
+    <div class="demo half" data-demo="threeBlack">
+      <div class="demo-head"><h4>흑삼병 (Three Black Crows)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box short"><canvas></canvas></div>
+      <p class="demo-desc">음봉 3개가 연속으로 저점을 낮추는 패턴. 천장권에서 나타나면 <b>본격 하락 개시</b> 신호.</p>
+    </div>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>같은 모양이라도 <b>나타나는 위치(추세)</b>에 따라 이름과 의미가 달라진다 — 망치형(바닥, 상승 반전) vs 교수형(천장, 하락 반전)</li>
+      <li>장악형은 두 번째 캔들이 첫 번째 캔들의 몸통을 <b>완전히 감싸야</b> 성립</li>
+      <li>샛별형·석별형의 가운데 '별'은 몸통이 작을수록(십자형이면 더욱) 신뢰도가 높다</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 3. 추세·지지/저항 ============ -->
+<section class="panel" id="panel-trend">
+  <h2>추세 (Trend)</h2>
+  <p class="lead">
+    추세란 주가가 움직이는 <b>일정한 방향성</b>입니다. 고점과 저점이 함께 높아지면 <b>상승 추세</b>,
+    함께 낮아지면 <b>하락 추세</b>, 방향 없이 옆으로 움직이면 <b>횡보(보합) 추세</b>입니다.
+  </p>
+
+  <div class="demo" data-demo="uptrend">
+    <div class="demo-head"><h4>상승 추세와 추세선</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box"><canvas></canvas></div>
+    <p class="demo-desc"><b>상승 추세선은 저점과 저점을 연결</b>해서 긋습니다(하락 추세선은 고점끼리 연결). 주가가 추세선을 <b>이탈(붕괴)</b>하면 추세 전환 신호로 봅니다.</p>
+  </div>
+
+  <div class="demo" data-demo="downtrend">
+    <div class="demo-head"><h4>하락 추세와 추세선</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box"><canvas></canvas></div>
+    <p class="demo-desc">고점이 계속 낮아지는 하락 추세. 추세선(고점 연결)을 <b>상향 돌파</b>하면 상승 전환 가능성을 봅니다.</p>
+  </div>
+
+  <h2>지지선과 저항선</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>🟦 지지선 (Support)</h3>
+      <p>주가 <b>하락을 멈추게 하는</b> 가격대. 이 가격이면 "싸다"고 느끼는 <b>매수세</b>가 대기하고 있는 수준입니다. 저점들을 수평으로 연결해 찾습니다.</p>
+    </div>
+    <div class="card">
+      <h3>🟥 저항선 (Resistance)</h3>
+      <p>주가 <b>상승을 막는</b> 가격대. 본전 심리·차익 실현의 <b>매도세</b>가 대기하는 수준입니다. 고점들을 수평으로 연결해 찾습니다.</p>
+    </div>
+  </div>
+
+  <div class="demo" data-demo="supportResistance">
+    <div class="demo-head"><h4>지지선과 저항선 사이의 움직임</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box"><canvas></canvas></div>
+    <p class="demo-desc">주가가 지지선과 저항선 사이를 오가다가, 저항선을 <b>거래량을 동반하며 돌파</b>하면 상승 추세가 시작되는 경우가 많습니다.</p>
+  </div>
+
+  <div class="demo" data-demo="roleReversal">
+    <div class="demo-head"><h4>지지↔저항의 역할 전환</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box"><canvas></canvas></div>
+    <p class="demo-desc">한 번 <b>돌파된 저항선은 이후 지지선으로</b>, 무너진 지지선은 저항선으로 역할이 바뀝니다. 돌파 후 되돌아와 지지를 확인하는 움직임을 '되돌림(pullback)'이라 합니다.</p>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>상승 추세선은 <b>저점끼리</b>, 하락 추세선은 <b>고점끼리</b> 연결</li>
+      <li>지지선·저항선은 여러 번 확인될수록, 거래량이 많을수록 신뢰도가 높다</li>
+      <li>돌파된 저항선은 지지선이 된다 (<b>역할 전환</b>)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4. 이동평균선 ============ -->
+<section class="panel" id="panel-ma">
+  <h2>이동평균선 (Moving Average)</h2>
+  <p class="lead">
+    일정 기간의 <b>종가 평균</b>을 이어 그린 선입니다. 단기(5일·20일), 중기(60일), 장기(120일·200일)선이 쓰이며,
+    주가의 <b>불규칙한 움직임을 완만하게(smoothing)</b> 만들어 추세를 파악하게 해줍니다.
+  </p>
+
+  <div class="demo" data-demo="maBasic">
+    <div class="demo-head"><h4>주가와 이동평균선 (5일 · 20일 · 60일)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">기간이 짧을수록 주가에 민감하게 반응하고, 길수록 완만합니다. 상승 추세에서 이동평균선은 <b>지지선</b>, 하락 추세에서는 <b>저항선</b> 역할을 합니다.</p>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo half" data-demo="goldenCross">
+      <div class="demo-head"><h4>골든 크로스 ✚</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc"><b>단기선이 장기선을 아래→위로 돌파</b>. 상승 추세 전환의 <b>매수 신호</b>로 해석합니다.</p>
+    </div>
+    <div class="demo half" data-demo="deadCross">
+      <div class="demo-head"><h4>데드 크로스 ✖</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc"><b>단기선이 장기선을 위→아래로 하향 돌파</b>. 하락 추세 전환의 <b>매도 신호</b>로 해석합니다.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>정배열과 역배열</h3>
+      <p><b>정배열</b>: 위에서부터 <b>주가 &gt; 단기 &gt; 중기 &gt; 장기</b> 순서로 늘어선 상태 → 전형적인 <b>상승 추세</b>.<br>
+      <b>역배열</b>: 반대로 장기선이 맨 위 → 전형적인 <b>하락 추세</b>.</p>
+    </div>
+    <div class="card">
+      <h3>이격도 (Disparity)</h3>
+      <p>주가가 이동평균선에서 <b>얼마나 떨어져 있는지</b>(주가÷이평선×100)를 나타냅니다. 100보다 크게 높으면 <b>과열(매도 고려)</b>, 크게 낮으면 <b>침체(매수 고려)</b> — 주가는 결국 이평선으로 회귀하려는 성질이 있기 때문입니다.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>그랜빌(Granville)의 투자 8법칙 — 핵심 요약</h3>
+    <table class="mini-table">
+      <tr><th>매수 신호 4가지</th><th>매도 신호 4가지</th></tr>
+      <tr><td>① 이평선이 하락을 멈추고 <b>상승 전환</b>할 때 주가가 이평선을 상향 돌파</td><td>① 이평선이 상승을 멈추고 <b>하락 전환</b>할 때 주가가 이평선을 하향 돌파</td></tr>
+      <tr><td>② 상승 중인 이평선을 주가가 일시적으로 하향 이탈(눌림목)</td><td>② 하락 중인 이평선을 주가가 일시적으로 상향 돌파(반등)</td></tr>
+      <tr><td>③ 주가가 상승 중인 이평선 위에서 하락하다 <b>이탈 없이 재상승</b></td><td>③ 주가가 하락 중인 이평선 아래에서 반등하다 <b>돌파 못 하고 재하락</b></td></tr>
+      <tr><td>④ 주가가 이평선보다 <b>지나치게 아래로</b> 떨어졌을 때 (반등 기대)</td><td>④ 주가가 이평선보다 <b>지나치게 위로</b> 치솟았을 때 (되돌림 경계)</td></tr>
+    </table>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>골든 크로스 = 단기선의 장기선 <b>상향 돌파(매수)</b>, 데드 크로스 = <b>하향 돌파(매도)</b></li>
+      <li>이동평균 기간이 <b>길수록 후행성</b>이 커진다 (신호가 늦게 나타남) — 이평선의 근본 한계</li>
+      <li>정배열 = 주가·단기·중기·장기 순 = 상승장 / 역배열 = 하락장</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 5. 반전형 패턴 ============ -->
+<section class="panel" id="panel-reversal">
+  <h2>반전형 패턴 (Reversal Patterns)</h2>
+  <p class="lead">
+    진행 중이던 추세가 <b>반대 방향으로 바뀔 때</b> 나타나는 패턴입니다.
+    천장(고점)에서 나타나면 하락 반전, 바닥(저점)에서 나타나면 상승 반전을 예고합니다.
+  </p>
+
+  <div class="demo" data-demo="headShoulders">
+    <div class="demo-head"><h4>헤드앤숄더형 (삼봉천장형)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">왼쪽어깨–머리–오른쪽어깨의 세 봉우리. 가운데(머리)가 가장 높습니다. 두 저점을 이은 <b>목선(neckline)을 하향 이탈</b>하는 순간 패턴이 완성되며, 목선~머리 높이만큼 추가 하락을 예상합니다. <b>가장 신뢰도 높은 하락 반전 패턴</b>으로 꼽힙니다.</p>
+  </div>
+
+  <div class="demo" data-demo="invHeadShoulders">
+    <div class="demo-head"><h4>역헤드앤숄더형 (삼봉바닥형)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">헤드앤숄더를 뒤집은 모양으로 <b>바닥에서 상승 반전</b>을 예고. 목선 <b>상향 돌파</b> 시 완성되며, 돌파 때 <b>거래량 증가</b>가 동반되어야 신뢰도가 높습니다.</p>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo half" data-demo="doubleTop">
+      <div class="demo-head"><h4>이중천장형 (쌍봉, M자형)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">비슷한 높이의 봉우리 2개. 두 번째 봉우리에서 전고점을 넘지 못하고, 중간 저점(목선)을 깨면 <b>하락 반전</b> 완성.</p>
+    </div>
+    <div class="demo half" data-demo="doubleBottom">
+      <div class="demo-head"><h4>이중바닥형 (쌍바닥, W자형)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">비슷한 깊이의 저점 2개. 중간 고점(목선)을 상향 돌파하면 <b>상승 반전</b> 완성. 두 번째 바닥의 거래량이 첫 바닥보다 적으면 신뢰도↑.</p>
+    </div>
+    <div class="demo half" data-demo="roundTop">
+      <div class="demo-head"><h4>원형천장형</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">완만한 반원을 그리며 서서히 방향이 바뀌는 패턴. 형성 기간이 길어 <b>진행은 느리지만 반전 신뢰도는 높은</b> 편.</p>
+    </div>
+    <div class="demo half" data-demo="roundBottom">
+      <div class="demo-head"><h4>원형바닥형 (접시형)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">바닥을 완만하게 다지고 올라가는 패턴. 거래량도 함께 U자를 그리는 경우가 많습니다.</p>
+    </div>
+    <div class="demo half" data-demo="vTop">
+      <div class="demo-head"><h4>V자 천장형 (스파이크)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">급등 직후 급락으로 <b>예고 없이 급격하게</b> 반전. 미리 포착하기 가장 어려운 패턴.</p>
+    </div>
+    <div class="demo half" data-demo="vBottom">
+      <div class="demo-head"><h4>V자 바닥형</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">급락 직후 급반등. 악재 해소·투매 마무리 후 나타나는 경우가 많습니다.</p>
+    </div>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>헤드앤숄더형은 <b>목선 하향 이탈</b>로 완성 — 목표 하락폭은 '머리~목선'의 높이만큼</li>
+      <li>반전 패턴 완성(목선 돌파) 시 <b>거래량 증가</b>가 신뢰도의 핵심 조건</li>
+      <li>이중천장 = M자(하락 반전), 이중바닥 = W자(상승 반전)</li>
+      <li>V자형은 형성 기간이 없어 <b>사전 예측이 가장 어려운</b> 반전 패턴</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6. 지속형 패턴 ============ -->
+<section class="panel" id="panel-continuation">
+  <h2>지속형 패턴 (Continuation Patterns)</h2>
+  <p class="lead">
+    추세 진행 중 잠시 쉬어가는 <b>조정·매물 소화 구간</b>에서 나타나며, 패턴 완성 후
+    <b>기존 추세 방향으로 다시 진행</b>할 가능성이 높은 패턴입니다. 반전형보다 형성 기간이 짧습니다.
+  </p>
+
+  <div class="demo-grid">
+    <div class="demo half" data-demo="symTriangle">
+      <div class="demo-head"><h4>대칭삼각형</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">고점은 낮아지고 저점은 높아지며 <b>수렴</b>. 변동폭이 줄다가 기존 추세 방향으로 돌파하는 경우가 많음.</p>
+    </div>
+    <div class="demo half" data-demo="ascTriangle">
+      <div class="demo-head"><h4>상승삼각형</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">고점은 <b>수평(저항)</b>, 저점은 점점 상승. 매수세가 점점 강해진다는 뜻으로 <b>상향 돌파</b> 가능성이 높음.</p>
+    </div>
+    <div class="demo half" data-demo="descTriangle">
+      <div class="demo-head"><h4>하락삼각형</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">저점은 <b>수평(지지)</b>, 고점은 점점 하락. 매도세 우위로 <b>하향 이탈</b> 가능성이 높음.</p>
+    </div>
+    <div class="demo half" data-demo="rectangle">
+      <div class="demo-head"><h4>직사각형 (박스권)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">수평 지지선과 저항선 사이를 오가는 패턴. 돌파 방향으로 매매하며, 박스 높이만큼 목표치를 잡음.</p>
+    </div>
+    <div class="demo half" data-demo="flag">
+      <div class="demo-head"><h4>깃발형 (Flag)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">급등(깃대) 후 추세와 <b>반대로 살짝 기운 평행 채널</b>(깃발)로 조정. 급등 추세 중간에 나타나는 대표적 지속형.</p>
+    </div>
+    <div class="demo half" data-demo="pennant">
+      <div class="demo-head"><h4>페넌트형 (Pennant)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">깃대 후 <b>작은 대칭삼각형</b>으로 수렴하는 조정. 깃발형과 함께 "깃대 길이만큼 추가 상승"을 기대.</p>
+    </div>
+    <div class="demo half" data-demo="wedgeFalling">
+      <div class="demo-head"><h4>하락쐐기형 (Falling Wedge)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">고점·저점이 모두 낮아지지만 <b>두 선이 아래로 수렴</b>. 하락 힘이 약해지는 것으로 <b>상향 돌파(강세)</b> 기대.</p>
+    </div>
+    <div class="demo half" data-demo="wedgeRising">
+      <div class="demo-head"><h4>상승쐐기형 (Rising Wedge)</h4><button class="regen">↻</button></div>
+      <div class="canvas-box"><canvas></canvas></div>
+      <p class="demo-desc">고점·저점이 모두 높아지지만 위로 수렴. 상승 힘이 약해지는 것으로 <b>하향 이탈(약세)</b> 가능성.</p>
+    </div>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>상승삼각형 → 상향 돌파, 하락삼각형 → 하향 이탈 가능성이 높다</li>
+      <li>깃발·페넌트는 <b>가파른 추세(깃대) 중간</b>에 나타나는 단기 지속형 — 깃발은 추세 반대 방향으로 기운다</li>
+      <li>쐐기형은 기운 방향과 <b>반대로</b> 돌파하는 경향 (하락쐐기 → 상승)</li>
+      <li>돌파 시 거래량 증가 동반 여부가 진짜 돌파/가짜 돌파(속임수)를 가른다</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7. 갭 이론 ============ -->
+<section class="panel" id="panel-gap">
+  <h2>갭 (Gap)</h2>
+  <p class="lead">
+    <b>갭</b>은 전일 가격 범위와 겹치지 않게 <b>훌쩍 뛰어서 시작</b>하여 차트에 빈 공간이 생기는 것입니다.
+    갭이 나타나는 <b>위치</b>에 따라 의미가 완전히 달라집니다.
+  </p>
+
+  <div class="demo" data-demo="gapStory">
+    <div class="demo-head"><h4>추세 속 갭의 4단계</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">횡보권의 <b>보통갭</b> → 패턴 돌파의 <b>돌파갭</b> → 추세 한복판의 <b>급진(계속)갭</b> → 추세 막바지의 <b>소멸갭</b>. 소멸갭 후 반대 방향 갭이 나타나 섬처럼 고립되면 <b>섬꼴반전</b>입니다.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>갭의 종류</h3>
+      <ul>
+        <li><b>보통갭</b> — 횡보권에서 발생, 곧 메워짐. 큰 의미 없음</li>
+        <li><b>돌파갭</b> — 패턴·저항 돌파와 함께 발생. <b>새 추세 시작</b> 신호, 잘 메워지지 않음</li>
+        <li><b>급진갭(계속갭)</b> — 추세 진행 중 발생. 추세의 <b>중간 지점</b>을 알려줌 (계량갭)</li>
+        <li><b>소멸갭</b> — 추세 <b>막바지</b>의 마지막 분출. 곧 메워지며 추세 종료 예고</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>섬꼴반전 (Island Reversal)</h3>
+      <p>소멸갭으로 올라간 가격대가 <b>반대 방향의 돌파갭</b>으로 인해 섬처럼 고립되는 것. <b>강력한 추세 반전</b> 신호입니다.</p>
+      <p class="dim">"갭은 언젠가 메워진다"는 속설이 있지만, <b>돌파갭은 예외</b>적으로 잘 메워지지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>갭 순서: <b>보통 → 돌파 → 급진(계속) → 소멸</b></li>
+      <li>급진갭은 추세의 <b>절반 지점</b>에서 나타난다 하여 '계량갭'이라고도 함</li>
+      <li>소멸갭 + 반대 방향 갭 = <b>섬꼴반전</b> (강력한 반전 신호)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 8. 보조지표 ============ -->
+<section class="panel" id="panel-indicator">
+  <h2>거래량과 보조지표</h2>
+  <p class="lead">
+    가격만으로 부족한 정보를 보완하는 도구들입니다. 핵심 격언: <b>"거래량은 주가에 선행한다."</b>
+  </p>
+
+  <div class="demo" data-demo="volumeTrend">
+    <div class="demo-head"><h4>주가와 거래량의 관계</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">상승 돌파에는 <b>거래량 급증</b>이 동반되어야 진짜 돌파입니다. 주가는 오르는데 거래량이 줄어들면(다이버전스) 상승 동력이 약해진다는 경고입니다.</p>
+  </div>
+
+  <div class="demo" data-demo="bollinger">
+    <div class="demo-head"><h4>볼린저 밴드 (Bollinger Bands)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">20일 이동평균선 ± 2×표준편차의 띠. 주가의 약 95%가 밴드 안에서 움직입니다. 밴드 폭이 <b>좁아지면(스퀴즈)</b> 곧 큰 변동이 온다는 신호, 밴드 상·하단은 과열·침체의 기준이 됩니다.</p>
+  </div>
+
+  <div class="demo" data-demo="rsi">
+    <div class="demo-head"><h4>RSI (상대강도지수)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">일정 기간(보통 14일) 상승폭과 하락폭의 비율로 0~100 사이 값을 만듭니다. <b>70 이상 과매수(매도 고려), 30 이하 과매도(매수 고려)</b>로 해석합니다.</p>
+  </div>
+
+  <div class="demo" data-demo="macd">
+    <div class="demo-head"><h4>MACD</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">단기 지수이평(12일) − 장기 지수이평(26일) = <b>MACD선</b>, 그 9일 평균 = <b>시그널선</b>. MACD선이 시그널선을 <b>상향 돌파하면 매수</b>, 하향 돌파하면 매도 신호. 이평선의 후행성을 보완한 추세 지표입니다.</p>
+  </div>
+
+  <div class="demo" data-demo="stochastic">
+    <div class="demo-head"><h4>스토캐스틱 (Stochastic)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">최근 N일 가격 범위에서 <b>현재가의 상대적 위치</b>(%K)를 0~100으로 표시. 80 이상 과매수, 20 이하 과매도. %K가 %D(이동평균)를 교차할 때를 매매 신호로 봅니다. 횡보장에서 유용합니다.</p>
+  </div>
+
+  <div class="demo" data-demo="obv">
+    <div class="demo-head"><h4>OBV (On Balance Volume)</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">주가가 오른 날의 거래량은 더하고 내린 날은 빼서 <b>누적</b>한 선. 주가가 횡보해도 OBV가 상승하면 <b>매집(세력 매수)</b>이 진행 중이라는 신호로 봅니다.</p>
+  </div>
+
+  <div class="demo" data-demo="elliott">
+    <div class="demo-head"><h4>엘리엇 파동 이론</h4><button class="regen">↻ 다시 그리기</button></div>
+    <div class="canvas-box tall"><canvas></canvas></div>
+    <p class="demo-desc">주가는 <b>상승 5파(1·3·5 상승, 2·4 조정) + 하락 3파(a·b·c)</b>의 8개 파동을 반복합니다. 3번 파동이 가장 강력하고 길며, 2번 파동은 1번 파동의 시작점 아래로 내려갈 수 없다는 절대 법칙이 있습니다.</p>
+  </div>
+
+  <div class="exam-point">
+    <b>📌 시험 포인트</b>
+    <ul>
+      <li>RSI: <b>70 이상 과매수 / 30 이하 과매도</b> · 스토캐스틱: 80/20</li>
+      <li>MACD = 단기 지수이평 − 장기 지수이평, 시그널선과의 교차가 매매 신호</li>
+      <li>볼린저 밴드 = 20일 이평 ± 2σ, 밴드 수축은 큰 변동의 전조</li>
+      <li>거래량은 주가에 <b>선행</b> · OBV 상승 + 주가 횡보 = 매집 신호</li>
+      <li>엘리엇 파동: 상승 5파 + 하락 3파, <b>3번 파동이 가장 길고 강함</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 9. 퀴즈 ============ -->
+<section class="panel" id="panel-quiz">
+  <h2>🎯 패턴 퀴즈</h2>
+  <p class="lead">차트를 보고 어떤 패턴인지 맞혀 보세요. 문제마다 차트가 랜덤으로 새로 생성됩니다.</p>
+
+  <div class="quiz-box">
+    <div class="quiz-status">
+      <span id="quiz-progress">문제 1</span>
+      <span id="quiz-score">점수 0</span>
+      <span id="quiz-streak"></span>
+    </div>
+    <div class="canvas-box tall"><canvas id="quiz-canvas"></canvas></div>
+    <p class="quiz-question" id="quiz-question">이 차트에 나타난 패턴은 무엇일까요?</p>
+    <div class="quiz-choices" id="quiz-choices"></div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <div class="quiz-actions">
+      <button id="quiz-next" class="btn-primary" disabled>다음 문제 ▶</button>
+      <button id="quiz-reset" class="btn-ghost">처음부터</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>교육용 학습 자료입니다. 차트는 학습을 위해 생성된 가상 데이터이며, 실제 투자 판단의 근거가 될 수 없습니다.</p>
+    <p class="dim">춘천고등학교 실용경제 · 투자자산운용사 교재(기술적 분석) 참고</p>
+  </div>
+</footer>
+
+<script src="js/chart.js"></script>
+<script src="js/patterns.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
